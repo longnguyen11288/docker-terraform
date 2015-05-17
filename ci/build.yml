@@ -1,7 +1,7 @@
 ---
 platform: linux
 
-image: docker:///ruby#2.1
+image: docker:///progrium/busybox
 
 inputs:
 - name: docker-terraform
