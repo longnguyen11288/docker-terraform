@@ -1,12 +1,12 @@
 ---
 platform: linux
 
-image: docker:///concourse/busyboxplus#curl
+image: docker:///ruby#2.1
 
 inputs:
 - name: docker-terraform
   path: .
-#- name: terraform-release
+- name: terraform-release
 
 run:
   path: ci/build.sh
