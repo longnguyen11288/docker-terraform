@@ -7,4 +7,4 @@ curl -L -o terraform-${TERRAFORM_VERSION}-linux-x86_64.zip ${url}
 
 mkdir -p bin
 
-tar xzf terraform-${TERRAFORM_VERSION}-linux-x86_64.zip -C bin/
+unzip terraform-${TERRAFORM_VERSION}-linux-x86_64.zip -d bin/
