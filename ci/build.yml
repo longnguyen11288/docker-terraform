@@ -1,7 +1,7 @@
 ---
 platform: linux
 
-image: docker:///progrium/busybox
+image: docker:///concourse/busyboxplus#curl
 
 inputs:
 - name: docker-terraform
