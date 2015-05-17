@@ -1,15 +1,12 @@
 ---
 platform: linux
 
-image: docker:///progrium/busybox
+image: docker:///concourse/busyboxplus:curl
 
 inputs:
 - name: docker-terraform
   path: .
 - name: terraform-release
-
-params:
-  cf_cli_version_path: terraform-release/version
 
 run:
   path: ci/build.sh
