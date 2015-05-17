@@ -1,7 +1,7 @@
 ---
 platform: linux
 
-image: docker:///ruby#2.1
+image: docker:///busybox#ubuntu-14.04
 
 inputs:
 - name: docker-terraform
