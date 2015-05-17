@@ -1,7 +1,7 @@
 ---
 platform: linux
 
-image: docker:///busybox#ubuntu-14.04
+image: docker:///lnguyen/busybox
 
 inputs:
 - name: docker-terraform
