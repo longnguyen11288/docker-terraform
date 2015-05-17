@@ -1,0 +1,15 @@
+---
+platform: linux
+
+image: docker:///ruby#2.1
+
+inputs:
+- name: docker-terraform
+  path: .
+- name: terraform-release
+
+params:
+  cf_cli_version_path: terraform-release/version
+
+run:
+  path: ci/build.sh

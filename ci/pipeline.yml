@@ -1,0 +1,44 @@
+
+jobs:
+- name: job-docker-cf
+  public: true
+  serial: true
+  plan:
+  - aggregate:
+    - get: docker-terraform
+      resource: git-docker-terraform
+      trigger: true
+    - get: terraform-release
+      resource: terraform-github-release
+      trigger: true
+  - task: get-terraform
+    file: docker-terraform/ci/build.yml
+  - put: docker-terraform-image
+    params:
+      build: get-terrform
+      tag: terraform-release/version
+      tag_prefix: v
+
+
+
+resources:
+- name: terraform-github-release
+  type: github-release
+  source:
+    user: hashicorp
+    repository: terraform
+    access_token: {{github-access-token}}
+
+- name: git-docker-terraform
+  type: git
+  source:
+    uri: https://github.com/starkandwayne/docker-terraform.git
+    access_token: {{github-access-token}}
+
+- name: docker-terraform-image
+  type: docker-image
+  source:
+    email: {{docker-hub-email}}
+    username: {{docker-hub-username}}
+    password: {{docker-hub-password}}
+    repository: starkandwayne/terraform
