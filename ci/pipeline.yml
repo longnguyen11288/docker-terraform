@@ -1,6 +1,6 @@
 
 jobs:
-- name: job-docker-cf
+- name: job-docker-terraform
   public: true
   serial: true
   plan:
@@ -9,25 +9,24 @@ jobs:
       resource: git-docker-terraform
       trigger: true
     - get: terraform-release
-      resource: terraform-github-release
+      resource: terraform-version
       trigger: true
   - task: get-terraform
     file: docker-terraform/ci/build.yml
   - put: docker-terraform-image
     params:
-      build: get-terrform
+      build: get-terraform
       tag: terraform-release/version
       tag_prefix: v
 
 
 
 resources:
-- name: terraform-github-release
-  type: github-release
+# FIX if terraform uses github release
+- name: terraform-version
+  type: git
   source:
-    user: hashicorp
-    repository: terraform
-    access_token: {{github-access-token}}
+    uri: https://gist.github.com/longnguyen11288/88def20236954031a007.git
 
 - name: git-docker-terraform
   type: git
